@@ -1,6 +1,7 @@
 using Romero.TrailTrainingPlans.Engine;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Romero.TrailTrainingPlans.Management
 {
@@ -24,15 +25,6 @@ namespace Romero.TrailTrainingPlans.Management
 
         #endregion
 
-        #region Setters
-
-        public void SetProfile(Profile profile)
-        {
-            userProfile = profile;
-        }
-
-        #endregion
-
         #region Data Management
 
         public void SaveData()
@@ -44,6 +36,29 @@ namespace Romero.TrailTrainingPlans.Management
         {
             string jsonString = File.ReadAllText(fileName);
             userProfile = JsonUtility.FromJson<Profile>(jsonString);
+        }
+
+        #endregion
+
+        #region Scene Management
+
+        public void LoadCalendarScene()
+        {
+            SceneManager.LoadScene("CalendarView");
+        }
+
+        #endregion
+
+        #region Setters/Getters
+
+        public void SetProfile(Profile profile)
+        {
+            userProfile = profile;
+        }
+
+        public string GetProfileName()
+        {
+            return userProfile.name;
         }
 
         #endregion
